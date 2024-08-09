@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organization_types",
+  "info": {
+    "singularName": "organization-type",
+    "pluralName": "organization-types",
+    "displayName": "Organization-Type",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "organizations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::organization.organization",
+      "mappedBy": "organization_type"
+    },
+    "Description": {
+      "type": "blocks"
+    }
+  }
+}

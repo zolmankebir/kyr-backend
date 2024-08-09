@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "timeline_posts",
+  "info": {
+    "singularName": "timeline-post",
+    "pluralName": "timeline-posts",
+    "displayName": "Timeline-Post",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Content": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "timeline_posts"
+    },
+    "Publication_Timestamp": {
+      "type": "datetime"
+    },
+    "Upvote": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "constituencies",
+  "info": {
+    "singularName": "constituency",
+    "pluralName": "constituencies",
+    "displayName": "Constituency",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::member.member",
+      "mappedBy": "constituency"
+    },
+    "county": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::county.county",
+      "inversedBy": "constituencies"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "members",
+  "info": {
+    "singularName": "member",
+    "pluralName": "members",
+    "displayName": "Member",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "organization": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::organization.organization",
+      "inversedBy": "members"
+    },
+    "institution": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::institution.institution",
+      "inversedBy": "members"
+    },
+    "Email": {
+      "type": "email",
+      "unique": true,
+      "required": true
+    },
+    "Phone_Number": {
+      "type": "biginteger",
+      "required": true
+    },
+    "constituency": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::constituency.constituency",
+      "inversedBy": "members"
+    }
+  }
+}

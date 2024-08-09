@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "legal_assistance_requests",
+  "info": {
+    "singularName": "legal-assistance-request",
+    "pluralName": "legal-assistance-requests",
+    "displayName": "legal-assistance-request",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Comment": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "legal_assistance_requests"
+    },
+    "Date_And_Time": {
+      "type": "datetime"
+    },
+    "institution": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::institution.institution",
+      "inversedBy": "legal_assistance_requests"
+    }
+  }
+}
