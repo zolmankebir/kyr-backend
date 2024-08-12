@@ -590,6 +590,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -764,53 +811,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCommentComment extends Schema.CollectionType {
   collectionName: 'comments';
   info: {
@@ -855,356 +855,16 @@ export interface ApiConstituencyConstituency extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String;
-    members: Attribute.Relation<
+    Code: Attribute.String;
+    mp: Attribute.Relation<
+      'api::constituency.constituency',
+      'oneToOne',
+      'api::mp.mp'
+    >;
+    wards: Attribute.Relation<
       'api::constituency.constituency',
       'oneToMany',
-      'api::member.member'
-    >;
-    Counties: Attribute.Enumeration<
-      [
-        'Mombasa',
-        'Kwale',
-        'Kilifi',
-        'Tana River',
-        'Lamu',
-        'Taita-Taveta',
-        'Garissa',
-        'Wajir',
-        'Mandera',
-        'Marsabit',
-        'Isiolo',
-        'Meru',
-        'Tharaka-Nithi',
-        'Embu',
-        'Kitui',
-        'Machakos',
-        'Makueni',
-        'Nyandarua',
-        'Nyeri',
-        'Kirinyaga',
-        "Murang'a",
-        'Kiambu',
-        'Turkana',
-        'West Pokot',
-        'Samburu',
-        'Trans Nzoia',
-        'Uasin Gishu',
-        'Elgeyo-Marakwet',
-        'Nandi',
-        'Baringo',
-        'Laikipia',
-        'Nakuru',
-        'Narok',
-        'Kajiado',
-        'Kericho',
-        'Bomet',
-        'Kakamega',
-        'Vihiga',
-        'Bungoma',
-        'Busia',
-        'Siaya',
-        'Kisumu',
-        'Homa Bay',
-        'Migori',
-        'Kisii',
-        'Nyamira',
-        'Nairobi City'
-      ]
-    >;
-    Constituency_name: Attribute.Enumeration<
-      [
-        'Changamwe',
-        'Jomvu',
-        'Kisauni',
-        'Nyali',
-        'Likoni',
-        'Mvita',
-        'Msambweni',
-        'Lunga Lunga',
-        'Matuga',
-        'Kinango',
-        'Kilifi North',
-        'Kilifi South',
-        'Kaloleni',
-        'Rabai',
-        'Ganze',
-        'Malindi',
-        'Magarini',
-        'Garsen',
-        'Galole',
-        'Bura',
-        'Lamu East',
-        'Lamu West',
-        'Taveta',
-        'Wundanyi',
-        'Mwatate',
-        'Voi',
-        'Garissa Township',
-        'Balambala',
-        'Lagdera',
-        'Dadaab',
-        'Fafi',
-        'Ijara',
-        'Wajir North',
-        'Wajir East',
-        'Tarbaj',
-        'Wajir West',
-        'Eldas',
-        'Wajir South',
-        'Mandera West',
-        'Banissa',
-        'Mandera North',
-        'Mandera South',
-        'Mandera East',
-        'Lafey',
-        'Moyale',
-        'North Horr',
-        'Saku',
-        'Laisamis',
-        'Isiolo North',
-        'Isiolo South',
-        'Igembe South',
-        'Igembe Central',
-        'Igembe North',
-        'Tigania West',
-        'Tigania East',
-        'North Imenti',
-        'Buuri',
-        'Central Imenti',
-        'South Imenti',
-        'Maara',
-        "Chuka/Igambang'ombe",
-        'Tharaka',
-        'Manyatta',
-        'Runyenjes',
-        'Mbeere South',
-        'Mbeere North',
-        'Mwingi North',
-        'Mwingi West',
-        'Mwingi Central',
-        'Kitui West',
-        'Kitui Rural',
-        'Kitui Central',
-        'Kitui East',
-        'Kitui South',
-        'Masinga',
-        'Yatta',
-        'Kangundo',
-        'Matungulu',
-        'Kathiani',
-        'Mavoko',
-        'Machakos Town',
-        'Mwala',
-        'Mbooni',
-        'Kilome',
-        'Kaiti',
-        'Makueni',
-        'Kibwezi West',
-        'Kibwezi East',
-        'Kinangop',
-        'Kipipiri',
-        'Ol Kalou',
-        'Ol Jorok',
-        'Ndaragwa',
-        'Tetu',
-        'Kieni',
-        'Mathira',
-        'Othaya',
-        'Mukurweini',
-        'Nyeri Town',
-        'Mwea',
-        'Gichugu',
-        'Ndia',
-        'Kirinyaga Central',
-        'Kangema',
-        'Mathioya',
-        'Kiharu',
-        'Kigumo',
-        'Maragwa',
-        'Kandara',
-        'Gatanga',
-        'Gatundu South',
-        'Gatundu North',
-        'Juja',
-        'Thika Town',
-        'Ruiru',
-        'Githunguri',
-        'Kiambu',
-        'Kiambaa',
-        'Kabete',
-        'Kikuyu',
-        'Limuru',
-        'Lari',
-        'Turkana North',
-        'Turkana West',
-        'Turkana Central',
-        'Loima',
-        'Turkana South',
-        'Turkana East',
-        'Kapenguria',
-        'Sigor',
-        'Kacheliba',
-        'Pokot South',
-        'Samburu West',
-        'Samburu North',
-        'Samburu East',
-        'Kwanza',
-        'Endebess',
-        'Saboti',
-        'Turbo',
-        'Soy',
-        'Moiben',
-        'Ainabkoi',
-        'Kapseret',
-        'Kesses',
-        'Marakwet East',
-        'Marakwet West',
-        'Keiyo North',
-        'Keiyo South',
-        'Tinderet',
-        'Aldai',
-        'Nandi Hills',
-        'Chesumei',
-        'Emgwen',
-        'Mosop',
-        'Tiaty',
-        'Baringo North',
-        'Baringo Central',
-        'Baringo South',
-        'Mogotio',
-        'Eldama Ravine',
-        'Laikipia West',
-        'Laikipia East',
-        'Laikipia North',
-        'Molo',
-        'Njoro',
-        'Naivasha',
-        'Gilgil',
-        'Kuresoi South',
-        'Kuresoi North',
-        'Subukia',
-        'Rongai',
-        'Bahati',
-        'Nakuru Town West',
-        'Nakuru Town East',
-        'Kilgoris',
-        'Emurua Dikirr',
-        'Narok North',
-        'Narok East',
-        'Narok South',
-        'Narok West',
-        'Kajiado North',
-        'Kajiado Central',
-        'Kajiado East',
-        'Kajiado West',
-        'Kajiado South',
-        'Kipkelion East',
-        'Kipkelion West',
-        'Ainamoi',
-        'Bureti',
-        'Belgut',
-        'Sigowet/Soin',
-        'Sotik',
-        'Chepalungu',
-        'Bomet East',
-        'Bomet Central',
-        'Konoin',
-        'Lugari',
-        'Likuyani',
-        'Malava',
-        'Lurambi',
-        'Navakholo',
-        'Mumias West',
-        'Mumias East',
-        'Matungu',
-        'Butere',
-        'Khwisero',
-        'Shinyalu',
-        'Ikolomani',
-        'Vihiga',
-        'Sabatia',
-        'Hamisi',
-        'Luanda',
-        'Emuhaya',
-        'Mt. Elgon',
-        'Sirisia',
-        'Kabuchai',
-        'Bumula',
-        'Kanduyi',
-        'Webuye East',
-        'Webuye West',
-        'Kimilili',
-        'Tongaren',
-        'Teso North',
-        'Teso South',
-        'Nambale',
-        'Matayos',
-        'Butula',
-        'Funyula',
-        'Budalangi',
-        'Ugenya',
-        'Ugunja',
-        'Alego Usonga',
-        'Gem',
-        'Bondo',
-        'Rarieda',
-        'Kisumu East',
-        'Kisumu West',
-        'Kisumu Central',
-        'Seme',
-        'Nyando',
-        'Muhoroni',
-        'Nyakach',
-        'Kasipul',
-        'Kabondo Kasipul',
-        'Karachuonyo',
-        'Rangwe',
-        'Homa Bay Town',
-        'Ndhiwa',
-        'Suba North',
-        'Suba South',
-        'Rongo',
-        'Awendo',
-        'Suna East',
-        'Suna West',
-        'Uriri',
-        'Nyatike',
-        'Kuria West',
-        'Kuria East',
-        'Bonchari',
-        'South Mugirango',
-        'Bomachoge Borabu',
-        'Bobasi',
-        'Bomachoge Chache',
-        'Nyaribari Masaba',
-        'Nyaribari Chache',
-        'Kitutu Chache North',
-        'Kitutu Chache South',
-        'Kitutu Masaba',
-        'West Mugirango',
-        'North Mugirango',
-        'Borabu',
-        'Westlands',
-        'Dagoretti North',
-        'Dagoretti South',
-        'Langata',
-        'Kibra',
-        'Roysambu',
-        'Kasarani',
-        'Ruaraka',
-        'Embakasi South',
-        'Embakasi North',
-        'Embakasi Central',
-        'Embakasi East',
-        'Embakasi West',
-        'Makadara',
-        'Kamukunji',
-        'Starehe',
-        'Mathare',
-        'Pumwani',
-        'Njiru'
-      ]
+      'api::ward.ward'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1241,7 +901,17 @@ export interface ApiCountyCounty extends Schema.CollectionType {
       'oneToMany',
       'api::constituency.constituency'
     >;
-    Counties: Attribute.Enumeration<
+    senator: Attribute.Relation<
+      'api::county.county',
+      'oneToOne',
+      'api::senator.senator'
+    >;
+    wards: Attribute.Relation<
+      'api::county.county',
+      'oneToMany',
+      'api::ward.ward'
+    >;
+    County: Attribute.Enumeration<
       [
         'Mombasa',
         'Kwale',
@@ -1292,7 +962,6 @@ export interface ApiCountyCounty extends Schema.CollectionType {
         'Nairobi City'
       ]
     >;
-    Name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1396,6 +1065,31 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
   };
 }
 
+export interface ApiMcaMca extends Schema.CollectionType {
+  collectionName: 'mcas';
+  info: {
+    singularName: 'mca';
+    pluralName: 'mcas';
+    displayName: 'MCA ';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    MCA: Attribute.Component<'representative-info.representative-info'>;
+    Contact: Attribute.Component<'contact.contact-info', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::mca.mca', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::mca.mca', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMemberMember extends Schema.CollectionType {
   collectionName: 'members';
   info: {
@@ -1421,11 +1115,6 @@ export interface ApiMemberMember extends Schema.CollectionType {
     >;
     Email: Attribute.Email & Attribute.Required & Attribute.Unique;
     Phone_Number: Attribute.BigInteger & Attribute.Required;
-    constituency: Attribute.Relation<
-      'api::member.member',
-      'manyToOne',
-      'api::constituency.constituency'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1440,6 +1129,36 @@ export interface ApiMemberMember extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMpMp extends Schema.CollectionType {
+  collectionName: 'mps';
+  info: {
+    singularName: 'mp';
+    pluralName: 'mps';
+    displayName: 'MP';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Mp: Attribute.Component<'representative-info.representative-info'>;
+    Contact: Attribute.Component<'contact.contact-info'>;
+    constituency: Attribute.Relation<
+      'api::mp.mp',
+      'oneToOne',
+      'api::constituency.constituency'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::mp.mp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::mp.mp', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1569,6 +1288,44 @@ export interface ApiReviewReview extends Schema.CollectionType {
   };
 }
 
+export interface ApiSenatorSenator extends Schema.CollectionType {
+  collectionName: 'senators';
+  info: {
+    singularName: 'senator';
+    pluralName: 'senators';
+    displayName: 'Senator';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Senator: Attribute.Component<'representative-info.representative-info'>;
+    Contact: Attribute.Component<'contact.contact-info'>;
+    county: Attribute.Relation<
+      'api::senator.senator',
+      'oneToOne',
+      'api::county.county'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::senator.senator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::senator.senator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
   collectionName: 'timeline_posts';
   info: {
@@ -1612,6 +1369,31 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
   };
 }
 
+export interface ApiWardWard extends Schema.CollectionType {
+  collectionName: 'wards';
+  info: {
+    singularName: 'ward';
+    pluralName: 'wards';
+    displayName: 'Ward';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Code: Attribute.String;
+    mca: Attribute.Relation<'api::ward.ward', 'oneToOne', 'api::mca.mca'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1626,20 +1408,24 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
       'api::comment.comment': ApiCommentComment;
       'api::constituency.constituency': ApiConstituencyConstituency;
       'api::county.county': ApiCountyCounty;
       'api::institution.institution': ApiInstitutionInstitution;
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
+      'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
+      'api::mp.mp': ApiMpMp;
       'api::organization.organization': ApiOrganizationOrganization;
       'api::organization-type.organization-type': ApiOrganizationTypeOrganizationType;
       'api::review.review': ApiReviewReview;
+      'api::senator.senator': ApiSenatorSenator;
       'api::timeline-post.timeline-post': ApiTimelinePostTimelinePost;
+      'api::ward.ward': ApiWardWard;
     }
   }
 }
