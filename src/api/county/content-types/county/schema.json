@@ -4,21 +4,73 @@
   "info": {
     "singularName": "county",
     "pluralName": "counties",
-    "displayName": "County"
+    "displayName": "County",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
-      "type": "string"
-    },
     "constituencies": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::constituency.constituency",
-      "mappedBy": "county"
+      "target": "api::constituency.constituency"
+    },
+    "Counties": {
+      "type": "enumeration",
+      "enum": [
+        "Mombasa",
+        "Kwale",
+        "Kilifi",
+        "Tana River",
+        "Lamu",
+        "Taita-Taveta",
+        "Garissa",
+        "Wajir",
+        "Mandera",
+        "Marsabit",
+        "Isiolo",
+        "Meru",
+        "Tharaka-Nithi",
+        "Embu",
+        "Kitui",
+        "Machakos",
+        "Makueni",
+        "Nyandarua",
+        "Nyeri",
+        "Kirinyaga",
+        "Murang'a",
+        "Kiambu",
+        "Turkana",
+        "West Pokot",
+        "Samburu",
+        "Trans Nzoia",
+        "Uasin Gishu",
+        "Elgeyo-Marakwet",
+        "Nandi",
+        "Baringo",
+        "Laikipia",
+        "Nakuru",
+        "Narok",
+        "Kajiado",
+        "Kericho",
+        "Bomet",
+        "Kakamega",
+        "Vihiga",
+        "Bungoma",
+        "Busia",
+        "Siaya",
+        "Kisumu",
+        "Homa Bay",
+        "Migori",
+        "Kisii",
+        "Nyamira",
+        "Nairobi City"
+      ]
+    },
+    "Name": {
+      "type": "string"
     }
   }
 }
