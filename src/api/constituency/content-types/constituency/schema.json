@@ -13,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "Name": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "members": {
       "type": "relation",
