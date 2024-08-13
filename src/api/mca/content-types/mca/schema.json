@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mcas",
+  "info": {
+    "singularName": "mca",
+    "pluralName": "mcas",
+    "displayName": "MCA ",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "MCA": {
+      "type": "component",
+      "repeatable": false,
+      "component": "representative-info.representative-info"
+    },
+    "Contact": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.contact-info"
+    }
+  }
+}
