@@ -69,13 +69,15 @@
         "Nairobi City"
       ]
     },
-    "Name": {
-      "type": "string"
-    },
     "senator": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::senator.senator"
+    },
+    "wards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ward.ward"
     }
   }
 }
