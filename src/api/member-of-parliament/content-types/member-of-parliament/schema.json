@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "member_of_parliaments",
+  "info": {
+    "singularName": "member-of-parliament",
+    "pluralName": "member-of-parliaments",
+    "displayName": "member-of-parliament"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Mp": {
+      "type": "string"
+    },
+    "constituency": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::constituency.constituency"
+    }
+  }
+}
