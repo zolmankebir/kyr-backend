@@ -42,6 +42,11 @@
       "relation": "manyToOne",
       "target": "api::constituency.constituency",
       "inversedBy": "members"
+    },
+    "senators": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::senator.senator"
     }
   }
 }
