@@ -1131,42 +1131,6 @@ export interface ApiMemberMember extends Schema.CollectionType {
   };
 }
 
-export interface ApiMemberOfParliamentMemberOfParliament
-  extends Schema.CollectionType {
-  collectionName: 'member_of_parliaments';
-  info: {
-    singularName: 'member-of-parliament';
-    pluralName: 'member-of-parliaments';
-    displayName: 'member-of-parliament';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Mp: Attribute.String;
-    constituency: Attribute.Relation<
-      'api::member-of-parliament.member-of-parliament',
-      'oneToOne',
-      'api::constituency.constituency'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::member-of-parliament.member-of-parliament',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::member-of-parliament.member-of-parliament',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiMpMp extends Schema.CollectionType {
   collectionName: 'mps';
   info: {
@@ -1453,7 +1417,6 @@ declare module '@strapi/types' {
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
       'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
-      'api::member-of-parliament.member-of-parliament': ApiMemberOfParliamentMemberOfParliament;
       'api::mp.mp': ApiMpMp;
       'api::organization.organization': ApiOrganizationOrganization;
       'api::organization-type.organization-type': ApiOrganizationTypeOrganizationType;
