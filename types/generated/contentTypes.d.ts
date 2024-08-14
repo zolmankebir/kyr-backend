@@ -1292,11 +1292,15 @@ export interface ApiCountyCounty extends Schema.CollectionType {
         'Nairobi City'
       ]
     >;
-    Name: Attribute.String;
     senator: Attribute.Relation<
       'api::county.county',
       'oneToOne',
       'api::senator.senator'
+    >;
+    wards: Attribute.Relation<
+      'api::county.county',
+      'oneToMany',
+      'api::ward.ward'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
