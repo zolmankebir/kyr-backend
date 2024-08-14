@@ -1293,6 +1293,11 @@ export interface ApiCountyCounty extends Schema.CollectionType {
       ]
     >;
     Name: Attribute.String;
+    senator: Attribute.Relation<
+      'api::county.county',
+      'oneToOne',
+      'api::senator.senator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1396,6 +1401,31 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
   };
 }
 
+export interface ApiMcaMca extends Schema.CollectionType {
+  collectionName: 'mcas';
+  info: {
+    singularName: 'mca';
+    pluralName: 'mcas';
+    displayName: 'MCA ';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    MCA: Attribute.Component<'representative-info.representative-info'>;
+    Contact: Attribute.Component<'contact.contact-info', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::mca.mca', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::mca.mca', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMemberMember extends Schema.CollectionType {
   collectionName: 'members';
   info: {
@@ -1440,6 +1470,36 @@ export interface ApiMemberMember extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMpMp extends Schema.CollectionType {
+  collectionName: 'mps';
+  info: {
+    singularName: 'mp';
+    pluralName: 'mps';
+    displayName: 'MP';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Mp: Attribute.Component<'representative-info.representative-info'>;
+    Contact: Attribute.Component<'contact.contact-info'>;
+    constituency: Attribute.Relation<
+      'api::mp.mp',
+      'oneToOne',
+      'api::constituency.constituency'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::mp.mp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::mp.mp', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1569,6 +1629,44 @@ export interface ApiReviewReview extends Schema.CollectionType {
   };
 }
 
+export interface ApiSenatorSenator extends Schema.CollectionType {
+  collectionName: 'senators';
+  info: {
+    singularName: 'senator';
+    pluralName: 'senators';
+    displayName: 'Senator';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Senator: Attribute.Component<'representative-info.representative-info'>;
+    Contact: Attribute.Component<'contact.contact-info'>;
+    county: Attribute.Relation<
+      'api::senator.senator',
+      'oneToOne',
+      'api::county.county'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::senator.senator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::senator.senator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
   collectionName: 'timeline_posts';
   info: {
@@ -1612,6 +1710,31 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
   };
 }
 
+export interface ApiWardWard extends Schema.CollectionType {
+  collectionName: 'wards';
+  info: {
+    singularName: 'ward';
+    pluralName: 'wards';
+    displayName: 'Ward';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Code: Attribute.String;
+    mca: Attribute.Relation<'api::ward.ward', 'oneToOne', 'api::mca.mca'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1635,11 +1758,15 @@ declare module '@strapi/types' {
       'api::county.county': ApiCountyCounty;
       'api::institution.institution': ApiInstitutionInstitution;
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
+      'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
+      'api::mp.mp': ApiMpMp;
       'api::organization.organization': ApiOrganizationOrganization;
       'api::organization-type.organization-type': ApiOrganizationTypeOrganizationType;
       'api::review.review': ApiReviewReview;
+      'api::senator.senator': ApiSenatorSenator;
       'api::timeline-post.timeline-post': ApiTimelinePostTimelinePost;
+      'api::ward.ward': ApiWardWard;
     }
   }
 }
