@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wards",
+  "info": {
+    "singularName": "ward",
+    "pluralName": "wards",
+    "displayName": "Ward",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Code": {
+      "type": "string"
+    },
+    "mca": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::mca.mca"
+    }
+  }
+}
