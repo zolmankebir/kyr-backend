@@ -1335,6 +1335,9 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'api::legal-assistance-request.legal-assistance-request'
     >;
     Description: Attribute.Blocks;
+    Government: Attribute.Enumeration<
+      ['Executive', 'Legislature', 'Judiciary']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
