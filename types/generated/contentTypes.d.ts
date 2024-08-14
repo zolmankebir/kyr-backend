@@ -982,21 +982,18 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String;
     members: Attribute.Relation<
       'api::institution.institution',
       'oneToMany',
       'api::member.member'
     >;
-    legal_assistance_requests: Attribute.Relation<
-      'api::institution.institution',
-      'oneToMany',
-      'api::legal-assistance-request.legal-assistance-request'
-    >;
-    Description: Attribute.Blocks;
     Government: Attribute.Enumeration<
       ['Executive', 'Legislature', 'Judiciary']
     >;
+    Role: Attribute.Enumeration<
+      ['Te President', 'Deputy President', 'attorney Qeneral', 'prime CS']
+    >;
+    Name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1035,11 +1032,6 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
       'plugin::users-permissions.user'
     >;
     Date_And_Time: Attribute.DateTime;
-    institution: Attribute.Relation<
-      'api::legal-assistance-request.legal-assistance-request',
-      'manyToOne',
-      'api::institution.institution'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1268,6 +1260,9 @@ export interface ApiOrganizationTypeOrganizationType
       'api::organization.organization'
     >;
     Description: Attribute.Blocks;
+    Type: Attribute.Enumeration<
+      ['Political Parties', 'Non-profit orqanizations', 'Profit Orqanizations']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

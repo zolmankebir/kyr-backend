@@ -23,6 +23,14 @@
     },
     "Description": {
       "type": "blocks"
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Political Parties",
+        "Non-profit orqanizations",
+        "Profit Orqanizations"
+      ]
     }
   }
 }
