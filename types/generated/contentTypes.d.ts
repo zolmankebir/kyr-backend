@@ -989,6 +989,9 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'api::legal-assistance-request.legal-assistance-request'
     >;
     Description: Attribute.Blocks;
+    Government: Attribute.Enumeration<
+      ['Executive', 'Legislature', 'Judiciary']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1104,6 +1107,11 @@ export interface ApiMemberMember extends Schema.CollectionType {
       'api::member.member',
       'manyToOne',
       'api::constituency.constituency'
+    >;
+    senators: Attribute.Relation<
+      'api::member.member',
+      'oneToMany',
+      'api::senator.senator'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

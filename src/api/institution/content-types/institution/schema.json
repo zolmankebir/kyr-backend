@@ -29,6 +29,14 @@
     },
     "Description": {
       "type": "blocks"
+    },
+    "Government": {
+      "type": "enumeration",
+      "enum": [
+        "Executive",
+        "Legislature",
+        "Judiciary"
+      ]
     }
   }
 }
