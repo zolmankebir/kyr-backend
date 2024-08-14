@@ -12,12 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "constituencies": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::constituency.constituency"
-    },
-    "Counties": {
+    "County": {
       "type": "enumeration",
       "enum": [
         "Mombasa",
@@ -69,8 +64,10 @@
         "Nairobi City"
       ]
     },
-    "Name": {
-      "type": "string"
+    "constituencies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::constituency.constituency"
     }
   }
 }
