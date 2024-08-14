@@ -947,6 +947,11 @@ export interface ApiCountyCounty extends Schema.CollectionType {
       'oneToMany',
       'api::constituency.constituency'
     >;
+    senator: Attribute.Relation<
+      'api::county.county',
+      'oneToOne',
+      'api::senator.senator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
