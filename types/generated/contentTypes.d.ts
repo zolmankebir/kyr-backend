@@ -1460,6 +1460,11 @@ export interface ApiMemberMember extends Schema.CollectionType {
       'manyToOne',
       'api::constituency.constituency'
     >;
+    senators: Attribute.Relation<
+      'api::member.member',
+      'oneToMany',
+      'api::senator.senator'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
