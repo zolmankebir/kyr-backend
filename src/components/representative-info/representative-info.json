@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_representative_info_representative_infos",
+  "info": {
+    "displayName": "Representative_Info",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Role": {
+      "type": "enumeration",
+      "enum": [
+        "Senator",
+        "Mp",
+        "MCA"
+      ]
+    },
+    "Party": {
+      "type": "string"
+    },
+    "Photo": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
