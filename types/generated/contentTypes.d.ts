@@ -855,357 +855,12 @@ export interface ApiConstituencyConstituency extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String;
     members: Attribute.Relation<
       'api::constituency.constituency',
       'oneToMany',
       'api::member.member'
     >;
-    Counties: Attribute.Enumeration<
-      [
-        'Mombasa',
-        'Kwale',
-        'Kilifi',
-        'Tana River',
-        'Lamu',
-        'Taita-Taveta',
-        'Garissa',
-        'Wajir',
-        'Mandera',
-        'Marsabit',
-        'Isiolo',
-        'Meru',
-        'Tharaka-Nithi',
-        'Embu',
-        'Kitui',
-        'Machakos',
-        'Makueni',
-        'Nyandarua',
-        'Nyeri',
-        'Kirinyaga',
-        "Murang'a",
-        'Kiambu',
-        'Turkana',
-        'West Pokot',
-        'Samburu',
-        'Trans Nzoia',
-        'Uasin Gishu',
-        'Elgeyo-Marakwet',
-        'Nandi',
-        'Baringo',
-        'Laikipia',
-        'Nakuru',
-        'Narok',
-        'Kajiado',
-        'Kericho',
-        'Bomet',
-        'Kakamega',
-        'Vihiga',
-        'Bungoma',
-        'Busia',
-        'Siaya',
-        'Kisumu',
-        'Homa Bay',
-        'Migori',
-        'Kisii',
-        'Nyamira',
-        'Nairobi City'
-      ]
-    >;
-    Constituency_name: Attribute.Enumeration<
-      [
-        'Changamwe',
-        'Jomvu',
-        'Kisauni',
-        'Nyali',
-        'Likoni',
-        'Mvita',
-        'Msambweni',
-        'Lunga Lunga',
-        'Matuga',
-        'Kinango',
-        'Kilifi North',
-        'Kilifi South',
-        'Kaloleni',
-        'Rabai',
-        'Ganze',
-        'Malindi',
-        'Magarini',
-        'Garsen',
-        'Galole',
-        'Bura',
-        'Lamu East',
-        'Lamu West',
-        'Taveta',
-        'Wundanyi',
-        'Mwatate',
-        'Voi',
-        'Garissa Township',
-        'Balambala',
-        'Lagdera',
-        'Dadaab',
-        'Fafi',
-        'Ijara',
-        'Wajir North',
-        'Wajir East',
-        'Tarbaj',
-        'Wajir West',
-        'Eldas',
-        'Wajir South',
-        'Mandera West',
-        'Banissa',
-        'Mandera North',
-        'Mandera South',
-        'Mandera East',
-        'Lafey',
-        'Moyale',
-        'North Horr',
-        'Saku',
-        'Laisamis',
-        'Isiolo North',
-        'Isiolo South',
-        'Igembe South',
-        'Igembe Central',
-        'Igembe North',
-        'Tigania West',
-        'Tigania East',
-        'North Imenti',
-        'Buuri',
-        'Central Imenti',
-        'South Imenti',
-        'Maara',
-        "Chuka/Igambang'ombe",
-        'Tharaka',
-        'Manyatta',
-        'Runyenjes',
-        'Mbeere South',
-        'Mbeere North',
-        'Mwingi North',
-        'Mwingi West',
-        'Mwingi Central',
-        'Kitui West',
-        'Kitui Rural',
-        'Kitui Central',
-        'Kitui East',
-        'Kitui South',
-        'Masinga',
-        'Yatta',
-        'Kangundo',
-        'Matungulu',
-        'Kathiani',
-        'Mavoko',
-        'Machakos Town',
-        'Mwala',
-        'Mbooni',
-        'Kilome',
-        'Kaiti',
-        'Makueni',
-        'Kibwezi West',
-        'Kibwezi East',
-        'Kinangop',
-        'Kipipiri',
-        'Ol Kalou',
-        'Ol Jorok',
-        'Ndaragwa',
-        'Tetu',
-        'Kieni',
-        'Mathira',
-        'Othaya',
-        'Mukurweini',
-        'Nyeri Town',
-        'Mwea',
-        'Gichugu',
-        'Ndia',
-        'Kirinyaga Central',
-        'Kangema',
-        'Mathioya',
-        'Kiharu',
-        'Kigumo',
-        'Maragwa',
-        'Kandara',
-        'Gatanga',
-        'Gatundu South',
-        'Gatundu North',
-        'Juja',
-        'Thika Town',
-        'Ruiru',
-        'Githunguri',
-        'Kiambu',
-        'Kiambaa',
-        'Kabete',
-        'Kikuyu',
-        'Limuru',
-        'Lari',
-        'Turkana North',
-        'Turkana West',
-        'Turkana Central',
-        'Loima',
-        'Turkana South',
-        'Turkana East',
-        'Kapenguria',
-        'Sigor',
-        'Kacheliba',
-        'Pokot South',
-        'Samburu West',
-        'Samburu North',
-        'Samburu East',
-        'Kwanza',
-        'Endebess',
-        'Saboti',
-        'Turbo',
-        'Soy',
-        'Moiben',
-        'Ainabkoi',
-        'Kapseret',
-        'Kesses',
-        'Marakwet East',
-        'Marakwet West',
-        'Keiyo North',
-        'Keiyo South',
-        'Tinderet',
-        'Aldai',
-        'Nandi Hills',
-        'Chesumei',
-        'Emgwen',
-        'Mosop',
-        'Tiaty',
-        'Baringo North',
-        'Baringo Central',
-        'Baringo South',
-        'Mogotio',
-        'Eldama Ravine',
-        'Laikipia West',
-        'Laikipia East',
-        'Laikipia North',
-        'Molo',
-        'Njoro',
-        'Naivasha',
-        'Gilgil',
-        'Kuresoi South',
-        'Kuresoi North',
-        'Subukia',
-        'Rongai',
-        'Bahati',
-        'Nakuru Town West',
-        'Nakuru Town East',
-        'Kilgoris',
-        'Emurua Dikirr',
-        'Narok North',
-        'Narok East',
-        'Narok South',
-        'Narok West',
-        'Kajiado North',
-        'Kajiado Central',
-        'Kajiado East',
-        'Kajiado West',
-        'Kajiado South',
-        'Kipkelion East',
-        'Kipkelion West',
-        'Ainamoi',
-        'Bureti',
-        'Belgut',
-        'Sigowet/Soin',
-        'Sotik',
-        'Chepalungu',
-        'Bomet East',
-        'Bomet Central',
-        'Konoin',
-        'Lugari',
-        'Likuyani',
-        'Malava',
-        'Lurambi',
-        'Navakholo',
-        'Mumias West',
-        'Mumias East',
-        'Matungu',
-        'Butere',
-        'Khwisero',
-        'Shinyalu',
-        'Ikolomani',
-        'Vihiga',
-        'Sabatia',
-        'Hamisi',
-        'Luanda',
-        'Emuhaya',
-        'Mt. Elgon',
-        'Sirisia',
-        'Kabuchai',
-        'Bumula',
-        'Kanduyi',
-        'Webuye East',
-        'Webuye West',
-        'Kimilili',
-        'Tongaren',
-        'Teso North',
-        'Teso South',
-        'Nambale',
-        'Matayos',
-        'Butula',
-        'Funyula',
-        'Budalangi',
-        'Ugenya',
-        'Ugunja',
-        'Alego Usonga',
-        'Gem',
-        'Bondo',
-        'Rarieda',
-        'Kisumu East',
-        'Kisumu West',
-        'Kisumu Central',
-        'Seme',
-        'Nyando',
-        'Muhoroni',
-        'Nyakach',
-        'Kasipul',
-        'Kabondo Kasipul',
-        'Karachuonyo',
-        'Rangwe',
-        'Homa Bay Town',
-        'Ndhiwa',
-        'Suba North',
-        'Suba South',
-        'Rongo',
-        'Awendo',
-        'Suna East',
-        'Suna West',
-        'Uriri',
-        'Nyatike',
-        'Kuria West',
-        'Kuria East',
-        'Bonchari',
-        'South Mugirango',
-        'Bomachoge Borabu',
-        'Bobasi',
-        'Bomachoge Chache',
-        'Nyaribari Masaba',
-        'Nyaribari Chache',
-        'Kitutu Chache North',
-        'Kitutu Chache South',
-        'Kitutu Masaba',
-        'West Mugirango',
-        'North Mugirango',
-        'Borabu',
-        'Westlands',
-        'Dagoretti North',
-        'Dagoretti South',
-        'Langata',
-        'Kibra',
-        'Roysambu',
-        'Kasarani',
-        'Ruaraka',
-        'Embakasi South',
-        'Embakasi North',
-        'Embakasi Central',
-        'Embakasi East',
-        'Embakasi West',
-        'Makadara',
-        'Kamukunji',
-        'Starehe',
-        'Mathare',
-        'Pumwani',
-        'Njiru'
-      ]
-    >;
+    constituency: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1236,12 +891,7 @@ export interface ApiCountyCounty extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    constituencies: Attribute.Relation<
-      'api::county.county',
-      'oneToMany',
-      'api::constituency.constituency'
-    >;
-    Counties: Attribute.Enumeration<
+    County: Attribute.Enumeration<
       [
         'Mombasa',
         'Kwale',
@@ -1292,15 +942,10 @@ export interface ApiCountyCounty extends Schema.CollectionType {
         'Nairobi City'
       ]
     >;
-    senator: Attribute.Relation<
-      'api::county.county',
-      'oneToOne',
-      'api::senator.senator'
-    >;
-    wards: Attribute.Relation<
+    constituencies: Attribute.Relation<
       'api::county.county',
       'oneToMany',
-      'api::ward.ward'
+      'api::constituency.constituency'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1344,6 +989,9 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'api::legal-assistance-request.legal-assistance-request'
     >;
     Description: Attribute.Blocks;
+    Government: Attribute.Enumeration<
+      ['Executive', 'Legislature', 'Judiciary']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1476,6 +1124,42 @@ export interface ApiMemberMember extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::member.member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMemberOfParliamentMemberOfParliament
+  extends Schema.CollectionType {
+  collectionName: 'member_of_parliaments';
+  info: {
+    singularName: 'member-of-parliament';
+    pluralName: 'member-of-parliaments';
+    displayName: 'member-of-parliament';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Mp: Attribute.String;
+    constituency: Attribute.Relation<
+      'api::member-of-parliament.member-of-parliament',
+      'oneToOne',
+      'api::constituency.constituency'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::member-of-parliament.member-of-parliament',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::member-of-parliament.member-of-parliament',
       'oneToOne',
       'admin::user'
     > &
@@ -1769,6 +1453,7 @@ declare module '@strapi/types' {
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
       'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
+      'api::member-of-parliament.member-of-parliament': ApiMemberOfParliamentMemberOfParliament;
       'api::mp.mp': ApiMpMp;
       'api::organization.organization': ApiOrganizationOrganization;
       'api::organization-type.organization-type': ApiOrganizationTypeOrganizationType;

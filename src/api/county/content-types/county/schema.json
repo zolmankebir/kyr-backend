@@ -12,12 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "constituencies": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::constituency.constituency"
-    },
-    "Counties": {
+    "County": {
       "type": "enumeration",
       "enum": [
         "Mombasa",
@@ -69,15 +64,10 @@
         "Nairobi City"
       ]
     },
-    "senator": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::senator.senator"
-    },
-    "wards": {
+    "constituencies": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::ward.ward"
+      "target": "api::constituency.constituency"
     }
   }
 }
