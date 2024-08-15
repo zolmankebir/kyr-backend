@@ -27,6 +27,14 @@ const config = {
     // 'zh-Hans',
     // 'zh',
   ],
+  translations: {
+    en: {
+      "app.components.LeftMenu.navbrand.title": "KYR Limited",
+      "Auth.form.welcome.subtitle": "Welcome to KYR Dashboard",
+      "Auth.form.welcome.title": "Welcome!",
+    },
+
+  },
 };
 
 const bootstrap = (app) => {
