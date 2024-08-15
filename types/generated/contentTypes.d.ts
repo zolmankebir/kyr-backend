@@ -811,6 +811,48 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAmbassadorAmbassador extends Schema.CollectionType {
+  collectionName: 'ambassadors';
+  info: {
+    singularName: 'ambassador';
+    pluralName: 'ambassadors';
+    displayName: 'Ambassador';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Location: Attribute.String;
+    member: Attribute.Relation<
+      'api::ambassador.ambassador',
+      'oneToOne',
+      'api::member.member'
+    >;
+    contact: Attribute.Component<'contact.contact-info', true>;
+    More_info: Attribute.Component<
+      'representative-info.representative-info',
+      true
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::ambassador.ambassador',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::ambassador.ambassador',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCommentComment extends Schema.CollectionType {
   collectionName: 'comments';
   info: {
@@ -991,7 +1033,7 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       ['Executive', 'Legislature', 'Judiciary']
     >;
     Role: Attribute.Enumeration<
-      ['Te President', 'Deputy President', 'attorney Qeneral', 'prime CS']
+      ['Te President', 'Deputy President', 'attorney Qeneral', 'CS', 'PS']
     >;
     Name: Attribute.String;
     createdAt: Attribute.DateTime;
@@ -1410,6 +1452,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::ambassador.ambassador': ApiAmbassadorAmbassador;
       'api::comment.comment': ApiCommentComment;
       'api::constituency.constituency': ApiConstituencyConstituency;
       'api::county.county': ApiCountyCounty;
