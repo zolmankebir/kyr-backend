@@ -994,7 +994,7 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'api::legal-assistance-request.legal-assistance-request'
     >;
     Description: Attribute.Blocks;
-    Government: Attribute.Enumeration<
+    institution_type: Attribute.Enumeration<
       ['Executive', 'Legislature', 'Judiciary']
     >;
     createdAt: Attribute.DateTime;
@@ -1039,6 +1039,11 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
       'api::legal-assistance-request.legal-assistance-request',
       'manyToOne',
       'api::institution.institution'
+    >;
+    organizations: Attribute.Relation<
+      'api::legal-assistance-request.legal-assistance-request',
+      'manyToMany',
+      'api::organization.organization'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1194,6 +1199,11 @@ export interface ApiOrganizationOrganization extends Schema.CollectionType {
       'oneToMany',
       'api::member.member'
     >;
+    legal_assistance_requests: Attribute.Relation<
+      'api::organization.organization',
+      'manyToMany',
+      'api::legal-assistance-request.legal-assistance-request'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1348,7 +1358,6 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     Publication_Timestamp: Attribute.DateTime;
-    Upvote: Attribute.BigInteger & Attribute.DefaultTo<'0'>;
     comments: Attribute.Relation<
       'api::timeline-post.timeline-post',
       'oneToMany',
@@ -1365,6 +1374,36 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::timeline-post.timeline-post',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUpvoteUpvote extends Schema.CollectionType {
+  collectionName: 'upvotes';
+  info: {
+    singularName: 'upvote';
+    pluralName: 'upvotes';
+    displayName: 'Upvote';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    upvote: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::upvote.upvote',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::upvote.upvote',
       'oneToOne',
       'admin::user'
     > &
@@ -1428,6 +1467,7 @@ declare module '@strapi/types' {
       'api::review.review': ApiReviewReview;
       'api::senator.senator': ApiSenatorSenator;
       'api::timeline-post.timeline-post': ApiTimelinePostTimelinePost;
+      'api::upvote.upvote': ApiUpvoteUpvote;
       'api::ward.ward': ApiWardWard;
     }
   }

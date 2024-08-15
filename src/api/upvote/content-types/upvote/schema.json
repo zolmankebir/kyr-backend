@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "upvotes",
+  "info": {
+    "singularName": "upvote",
+    "pluralName": "upvotes",
+    "displayName": "Upvote"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "upvote": {
+      "type": "biginteger"
+    }
+  }
+}

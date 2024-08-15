@@ -30,7 +30,7 @@
     "Description": {
       "type": "blocks"
     },
-    "Government": {
+    "institution_type": {
       "type": "enumeration",
       "enum": [
         "Executive",

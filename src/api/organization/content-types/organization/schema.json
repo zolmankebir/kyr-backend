@@ -32,6 +32,12 @@
       "relation": "oneToMany",
       "target": "api::member.member",
       "mappedBy": "organization"
+    },
+    "legal_assistance_requests": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::legal-assistance-request.legal-assistance-request",
+      "mappedBy": "organizations"
     }
   }
 }

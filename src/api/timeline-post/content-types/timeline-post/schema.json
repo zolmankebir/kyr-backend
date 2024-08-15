@@ -24,10 +24,6 @@
     "Publication_Timestamp": {
       "type": "datetime"
     },
-    "Upvote": {
-      "type": "biginteger",
-      "default": "0"
-    },
     "comments": {
       "type": "relation",
       "relation": "oneToMany",
