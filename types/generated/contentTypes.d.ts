@@ -811,6 +811,48 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAmbassadorAmbassador extends Schema.CollectionType {
+  collectionName: 'ambassadors';
+  info: {
+    singularName: 'ambassador';
+    pluralName: 'ambassadors';
+    displayName: 'Ambassador';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Location: Attribute.String;
+    member: Attribute.Relation<
+      'api::ambassador.ambassador',
+      'oneToOne',
+      'api::member.member'
+    >;
+    contact: Attribute.Component<'contact.contact-info', true>;
+    More_info: Attribute.Component<
+      'representative-info.representative-info',
+      true
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::ambassador.ambassador',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::ambassador.ambassador',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCommentComment extends Schema.CollectionType {
   collectionName: 'comments';
   info: {
@@ -982,21 +1024,18 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String;
     members: Attribute.Relation<
       'api::institution.institution',
       'oneToMany',
       'api::member.member'
     >;
-    legal_assistance_requests: Attribute.Relation<
-      'api::institution.institution',
-      'oneToMany',
-      'api::legal-assistance-request.legal-assistance-request'
-    >;
-    Description: Attribute.Blocks;
     Government: Attribute.Enumeration<
       ['Executive', 'Legislature', 'Judiciary']
     >;
+    Role: Attribute.Enumeration<
+      ['Te President', 'Deputy President', 'attorney Qeneral', 'CS', 'PS']
+    >;
+    Name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1035,11 +1074,6 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
       'plugin::users-permissions.user'
     >;
     Date_And_Time: Attribute.DateTime;
-    institution: Attribute.Relation<
-      'api::legal-assistance-request.legal-assistance-request',
-      'manyToOne',
-      'api::institution.institution'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1129,42 +1163,6 @@ export interface ApiMemberMember extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::member.member',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMemberOfParliamentMemberOfParliament
-  extends Schema.CollectionType {
-  collectionName: 'member_of_parliaments';
-  info: {
-    singularName: 'member-of-parliament';
-    pluralName: 'member-of-parliaments';
-    displayName: 'member-of-parliament';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Mp: Attribute.String;
-    constituency: Attribute.Relation<
-      'api::member-of-parliament.member-of-parliament',
-      'oneToOne',
-      'api::constituency.constituency'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::member-of-parliament.member-of-parliament',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::member-of-parliament.member-of-parliament',
       'oneToOne',
       'admin::user'
     > &
@@ -1268,6 +1266,9 @@ export interface ApiOrganizationTypeOrganizationType
       'api::organization.organization'
     >;
     Description: Attribute.Blocks;
+    Type: Attribute.Enumeration<
+      ['Political Parties', 'Non-profit orqanizations', 'Profit Orqanizations']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1451,6 +1452,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::ambassador.ambassador': ApiAmbassadorAmbassador;
       'api::comment.comment': ApiCommentComment;
       'api::constituency.constituency': ApiConstituencyConstituency;
       'api::county.county': ApiCountyCounty;
@@ -1458,7 +1460,6 @@ declare module '@strapi/types' {
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
       'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
-      'api::member-of-parliament.member-of-parliament': ApiMemberOfParliamentMemberOfParliament;
       'api::mp.mp': ApiMpMp;
       'api::organization.organization': ApiOrganizationOrganization;
       'api::organization-type.organization-type': ApiOrganizationTypeOrganizationType;

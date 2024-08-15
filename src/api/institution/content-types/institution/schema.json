@@ -12,23 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
-      "type": "string"
-    },
     "members": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::member.member",
       "mappedBy": "institution"
-    },
-    "legal_assistance_requests": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::legal-assistance-request.legal-assistance-request",
-      "mappedBy": "institution"
-    },
-    "Description": {
-      "type": "blocks"
     },
     "Government": {
       "type": "enumeration",
@@ -37,6 +25,19 @@
         "Legislature",
         "Judiciary"
       ]
+    },
+    "Role": {
+      "type": "enumeration",
+      "enum": [
+        "Te President",
+        "Deputy President",
+        "attorney Qeneral",
+        "CS",
+        "PS"
+      ]
+    },
+    "Name": {
+      "type": "string"
     }
   }
 }
