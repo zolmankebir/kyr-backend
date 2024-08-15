@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "institution_types",
+  "info": {
+    "singularName": "institution-type",
+    "pluralName": "institution-types",
+    "displayName": "Institution_type",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Institution_type": {
+      "type": "enumeration",
+      "enum": [
+        "Executive",
+        "Judiciary",
+        "Legislature"
+      ]
+    },
+    "institutions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::institution.institution",
+      "mappedBy": "institution_type"
+    }
+  }
+}

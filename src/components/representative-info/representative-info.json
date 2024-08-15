@@ -2,13 +2,11 @@
   "collectionName": "components_representative_info_representative_infos",
   "info": {
     "displayName": "Representative_Info",
-    "icon": "book"
+    "icon": "book",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Name": {
-      "type": "string"
-    },
     "Role": {
       "type": "enumeration",
       "enum": [
@@ -21,12 +19,13 @@
       "type": "string"
     },
     "Photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

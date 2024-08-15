@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ministries",
+  "info": {
+    "singularName": "ministry",
+    "pluralName": "ministries",
+    "displayName": "ministry",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Ministry": {
+      "type": "string",
+      "unique": true
+    },
+    "institution": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::institution.institution",
+      "inversedBy": "ministries"
+    },
+    "ministers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::minister.minister"
+    }
+  }
+}

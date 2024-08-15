@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "members": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::member.member",
-      "mappedBy": "constituency"
-    },
     "constituency": {
       "type": "string",
       "unique": true

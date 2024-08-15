@@ -36,17 +36,6 @@
     "Phone_Number": {
       "type": "biginteger",
       "required": true
-    },
-    "constituency": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::constituency.constituency",
-      "inversedBy": "members"
-    },
-    "senators": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::senator.senator"
     }
   }
 }

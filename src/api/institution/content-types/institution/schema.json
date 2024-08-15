@@ -18,14 +18,6 @@
       "target": "api::member.member",
       "mappedBy": "institution"
     },
-    "Government": {
-      "type": "enumeration",
-      "enum": [
-        "Executive",
-        "Legislature",
-        "Judiciary"
-      ]
-    },
     "Role": {
       "type": "enumeration",
       "enum": [
@@ -38,6 +30,24 @@
     },
     "Name": {
       "type": "string"
+    },
+    "legal_assistance_requests": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::legal-assistance-request.legal-assistance-request",
+      "mappedBy": "institutions"
+    },
+    "ministries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ministry.ministry",
+      "mappedBy": "institution"
+    },
+    "institution_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::institution-type.institution-type",
+      "inversedBy": "institutions"
     }
   }
 }
