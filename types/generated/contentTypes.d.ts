@@ -897,11 +897,6 @@ export interface ApiConstituencyConstituency extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    members: Attribute.Relation<
-      'api::constituency.constituency',
-      'oneToMany',
-      'api::member.member'
-    >;
     constituency: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1029,13 +1024,25 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'oneToMany',
       'api::member.member'
     >;
-    Government: Attribute.Enumeration<
-      ['Executive', 'Legislature', 'Judiciary']
-    >;
     Role: Attribute.Enumeration<
       ['Te President', 'Deputy President', 'attorney Qeneral', 'CS', 'PS']
     >;
     Name: Attribute.String;
+    legal_assistance_requests: Attribute.Relation<
+      'api::institution.institution',
+      'manyToMany',
+      'api::legal-assistance-request.legal-assistance-request'
+    >;
+    ministries: Attribute.Relation<
+      'api::institution.institution',
+      'oneToMany',
+      'api::ministry.ministry'
+    >;
+    institution_type: Attribute.Relation<
+      'api::institution.institution',
+      'manyToOne',
+      'api::institution-type.institution-type'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1047,6 +1054,45 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::institution.institution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInstitutionTypeInstitutionType
+  extends Schema.CollectionType {
+  collectionName: 'institution_types';
+  info: {
+    singularName: 'institution-type';
+    pluralName: 'institution-types';
+    displayName: 'Institution_type';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Institution_type: Attribute.Enumeration<
+      ['Executive', 'Judiciary', 'Legislature']
+    >;
+    institutions: Attribute.Relation<
+      'api::institution-type.institution-type',
+      'oneToMany',
+      'api::institution.institution'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::institution-type.institution-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::institution-type.institution-type',
       'oneToOne',
       'admin::user'
     > &
@@ -1074,6 +1120,16 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
       'plugin::users-permissions.user'
     >;
     Date_And_Time: Attribute.DateTime;
+    institutions: Attribute.Relation<
+      'api::legal-assistance-request.legal-assistance-request',
+      'manyToMany',
+      'api::institution.institution'
+    >;
+    organizations: Attribute.Relation<
+      'api::legal-assistance-request.legal-assistance-request',
+      'manyToMany',
+      'api::organization.organization'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1142,16 +1198,6 @@ export interface ApiMemberMember extends Schema.CollectionType {
     >;
     Email: Attribute.Email & Attribute.Required & Attribute.Unique;
     Phone_Number: Attribute.BigInteger & Attribute.Required;
-    constituency: Attribute.Relation<
-      'api::member.member',
-      'manyToOne',
-      'api::constituency.constituency'
-    >;
-    senators: Attribute.Relation<
-      'api::member.member',
-      'oneToMany',
-      'api::senator.senator'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1163,6 +1209,82 @@ export interface ApiMemberMember extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::member.member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMinisterMinister extends Schema.CollectionType {
+  collectionName: 'ministers';
+  info: {
+    singularName: 'minister';
+    pluralName: 'ministers';
+    displayName: 'Minister';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String & Attribute.Unique;
+    ministry: Attribute.Relation<
+      'api::minister.minister',
+      'oneToOne',
+      'api::ministry.ministry'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::minister.minister',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::minister.minister',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMinistryMinistry extends Schema.CollectionType {
+  collectionName: 'ministries';
+  info: {
+    singularName: 'ministry';
+    pluralName: 'ministries';
+    displayName: 'ministry';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Ministry: Attribute.String & Attribute.Unique;
+    institution: Attribute.Relation<
+      'api::ministry.ministry',
+      'manyToOne',
+      'api::institution.institution'
+    >;
+    ministers: Attribute.Relation<
+      'api::ministry.ministry',
+      'oneToMany',
+      'api::minister.minister'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::ministry.ministry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::ministry.ministry',
       'oneToOne',
       'admin::user'
     > &
@@ -1491,9 +1613,12 @@ declare module '@strapi/types' {
       'api::constituency.constituency': ApiConstituencyConstituency;
       'api::county.county': ApiCountyCounty;
       'api::institution.institution': ApiInstitutionInstitution;
+      'api::institution-type.institution-type': ApiInstitutionTypeInstitutionType;
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
       'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
+      'api::minister.minister': ApiMinisterMinister;
+      'api::ministry.ministry': ApiMinistryMinistry;
       'api::mp.mp': ApiMpMp;
       'api::organization.organization': ApiOrganizationOrganization;
       'api::organization-type.organization-type': ApiOrganizationTypeOrganizationType;

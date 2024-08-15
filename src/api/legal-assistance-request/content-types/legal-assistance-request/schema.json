@@ -23,6 +23,18 @@
     },
     "Date_And_Time": {
       "type": "datetime"
+    },
+    "institutions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::institution.institution",
+      "inversedBy": "legal_assistance_requests"
+    },
+    "organizations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::organization.organization",
+      "inversedBy": "legal_assistance_requests"
     }
   }
 }
