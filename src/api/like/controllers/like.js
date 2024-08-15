@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * upvote controller
+ * like controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::upvote.upvote');
+module.exports = createCoreController('api::like.like');

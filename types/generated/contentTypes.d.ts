@@ -1148,6 +1148,28 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
   };
 }
 
+export interface ApiLikeLike extends Schema.CollectionType {
+  collectionName: 'likes';
+  info: {
+    singularName: 'like';
+    pluralName: 'likes';
+    displayName: 'Like';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    likes: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMcaMca extends Schema.CollectionType {
   collectionName: 'mcas';
   info: {
@@ -1535,36 +1557,6 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
   };
 }
 
-export interface ApiUpvoteUpvote extends Schema.CollectionType {
-  collectionName: 'upvotes';
-  info: {
-    singularName: 'upvote';
-    pluralName: 'upvotes';
-    displayName: 'Upvote';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    upvote: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::upvote.upvote',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::upvote.upvote',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiWardWard extends Schema.CollectionType {
   collectionName: 'wards';
   info: {
@@ -1615,6 +1607,7 @@ declare module '@strapi/types' {
       'api::institution.institution': ApiInstitutionInstitution;
       'api::institution-type.institution-type': ApiInstitutionTypeInstitutionType;
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
+      'api::like.like': ApiLikeLike;
       'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
       'api::minister.minister': ApiMinisterMinister;
@@ -1625,7 +1618,6 @@ declare module '@strapi/types' {
       'api::review.review': ApiReviewReview;
       'api::senator.senator': ApiSenatorSenator;
       'api::timeline-post.timeline-post': ApiTimelinePostTimelinePost;
-      'api::upvote.upvote': ApiUpvoteUpvote;
       'api::ward.ward': ApiWardWard;
     }
   }

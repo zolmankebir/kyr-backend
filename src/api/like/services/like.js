@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * upvote service
+ * like service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::upvote.upvote');
+module.exports = createCoreService('api::like.like');
