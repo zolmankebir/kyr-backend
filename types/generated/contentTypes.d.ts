@@ -867,6 +867,11 @@ export interface ApiCommentComment extends Schema.CollectionType {
   attributes: {
     Comment: Attribute.String;
     Date_Time: Attribute.DateTime;
+    timeline_post: Attribute.Relation<
+      'api::comment.comment',
+      'oneToOne',
+      'api::timeline-post.timeline-post'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

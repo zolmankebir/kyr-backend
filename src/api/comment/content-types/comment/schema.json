@@ -17,6 +17,11 @@
     },
     "Date_Time": {
       "type": "datetime"
+    },
+    "timeline_post": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::timeline-post.timeline-post"
     }
   }
 }
