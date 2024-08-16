@@ -15,6 +15,17 @@
     "constituency": {
       "type": "string",
       "unique": true
+    },
+    "county": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::county.county",
+      "inversedBy": "constituencies"
+    },
+    "mp": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::mp.mp"
     }
   }
 }

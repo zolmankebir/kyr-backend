@@ -64,15 +64,16 @@
         "Nairobi City"
       ]
     },
-    "constituencies": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::constituency.constituency"
-    },
     "senator": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::senator.senator"
+    },
+    "constituencies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::constituency.constituency",
+      "mappedBy": "county"
     }
   }
 }

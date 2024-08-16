@@ -904,6 +904,16 @@ export interface ApiConstituencyConstituency extends Schema.CollectionType {
   };
   attributes: {
     constituency: Attribute.String & Attribute.Unique;
+    county: Attribute.Relation<
+      'api::constituency.constituency',
+      'manyToOne',
+      'api::county.county'
+    >;
+    mp: Attribute.Relation<
+      'api::constituency.constituency',
+      'oneToOne',
+      'api::mp.mp'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -985,15 +995,15 @@ export interface ApiCountyCounty extends Schema.CollectionType {
         'Nairobi City'
       ]
     >;
-    constituencies: Attribute.Relation<
-      'api::county.county',
-      'oneToMany',
-      'api::constituency.constituency'
-    >;
     senator: Attribute.Relation<
       'api::county.county',
       'oneToOne',
       'api::senator.senator'
+    >;
+    constituencies: Attribute.Relation<
+      'api::county.county',
+      'oneToMany',
+      'api::constituency.constituency'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
