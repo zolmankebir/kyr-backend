@@ -835,6 +835,7 @@ export interface ApiAmbassadorAmbassador extends Schema.CollectionType {
       'representative-info.representative-info',
       true
     >;
+    Position: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1198,6 +1199,7 @@ export interface ApiMemberMember extends Schema.CollectionType {
     >;
     Email: Attribute.Email & Attribute.Required & Attribute.Unique;
     Phone_Number: Attribute.BigInteger & Attribute.Required;
+    Profile: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -36,6 +36,13 @@
     "Phone_Number": {
       "type": "biginteger",
       "required": true
+    },
+    "Profile": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
