@@ -868,6 +868,11 @@ export interface ApiCommentComment extends Schema.CollectionType {
   attributes: {
     Comment: Attribute.String;
     Date_Time: Attribute.DateTime;
+    timeline_post: Attribute.Relation<
+      'api::comment.comment',
+      'manyToOne',
+      'api::timeline-post.timeline-post'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1026,7 +1031,13 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'api::member.member'
     >;
     Role: Attribute.Enumeration<
-      ['Te President', 'Deputy President', 'attorney Qeneral', 'CS', 'PS']
+      [
+        'The President',
+        'Deputy President',
+        'Attorney General',
+        'Cabinet Secretary',
+        'Permanent Secretary'
+      ]
     >;
     Name: Attribute.String;
     legal_assistance_requests: Attribute.Relation<
@@ -1149,6 +1160,28 @@ export interface ApiLegalAssistanceRequestLegalAssistanceRequest
   };
 }
 
+export interface ApiLikeLike extends Schema.CollectionType {
+  collectionName: 'likes';
+  info: {
+    singularName: 'like';
+    pluralName: 'likes';
+    displayName: 'Like';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    likes: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMcaMca extends Schema.CollectionType {
   collectionName: 'mcas';
   info: {
@@ -1224,6 +1257,7 @@ export interface ApiMinisterMinister extends Schema.CollectionType {
     singularName: 'minister';
     pluralName: 'ministers';
     displayName: 'Minister';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1234,6 +1268,11 @@ export interface ApiMinisterMinister extends Schema.CollectionType {
       'api::minister.minister',
       'oneToOne',
       'api::ministry.ministry'
+    >;
+    Contact: Attribute.Component<'contact.contact-info', true>;
+    Minister: Attribute.Component<
+      'representative-info.representative-info',
+      true
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1519,6 +1558,7 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
       'oneToMany',
       'api::comment.comment'
     >;
+    Media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1530,36 +1570,6 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::timeline-post.timeline-post',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiUpvoteUpvote extends Schema.CollectionType {
-  collectionName: 'upvotes';
-  info: {
-    singularName: 'upvote';
-    pluralName: 'upvotes';
-    displayName: 'Upvote';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    upvote: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::upvote.upvote',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::upvote.upvote',
       'oneToOne',
       'admin::user'
     > &
@@ -1617,6 +1627,7 @@ declare module '@strapi/types' {
       'api::institution.institution': ApiInstitutionInstitution;
       'api::institution-type.institution-type': ApiInstitutionTypeInstitutionType;
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
+      'api::like.like': ApiLikeLike;
       'api::mca.mca': ApiMcaMca;
       'api::member.member': ApiMemberMember;
       'api::minister.minister': ApiMinisterMinister;
@@ -1627,7 +1638,6 @@ declare module '@strapi/types' {
       'api::review.review': ApiReviewReview;
       'api::senator.senator': ApiSenatorSenator;
       'api::timeline-post.timeline-post': ApiTimelinePostTimelinePost;
-      'api::upvote.upvote': ApiUpvoteUpvote;
       'api::ward.ward': ApiWardWard;
     }
   }

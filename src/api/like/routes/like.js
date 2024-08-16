@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * upvote router
+ * like router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::upvote.upvote');
+module.exports = createCoreRouter('api::like.like');

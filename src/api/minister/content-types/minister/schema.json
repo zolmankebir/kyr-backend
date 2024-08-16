@@ -4,7 +4,8 @@
   "info": {
     "singularName": "minister",
     "pluralName": "ministers",
-    "displayName": "Minister"
+    "displayName": "Minister",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,16 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::ministry.ministry"
+    },
+    "Contact": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.contact-info"
+    },
+    "Minister": {
+      "type": "component",
+      "repeatable": true,
+      "component": "representative-info.representative-info"
     }
   }
 }

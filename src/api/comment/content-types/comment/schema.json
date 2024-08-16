@@ -17,6 +17,12 @@
     },
     "Date_Time": {
       "type": "datetime"
+    },
+    "timeline_post": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::timeline-post.timeline-post",
+      "inversedBy": "comments"
     }
   }
 }
