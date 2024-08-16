@@ -1556,6 +1556,7 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
       'oneToMany',
       'api::comment.comment'
     >;
+    Media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
