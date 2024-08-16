@@ -869,7 +869,7 @@ export interface ApiCommentComment extends Schema.CollectionType {
     Date_Time: Attribute.DateTime;
     timeline_post: Attribute.Relation<
       'api::comment.comment',
-      'oneToOne',
+      'manyToOne',
       'api::timeline-post.timeline-post'
     >;
     createdAt: Attribute.DateTime;
