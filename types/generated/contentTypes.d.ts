@@ -1563,12 +1563,12 @@ export interface ApiTimelinePostTimelinePost extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     Publication_Timestamp: Attribute.DateTime;
+    Media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     comments: Attribute.Relation<
       'api::timeline-post.timeline-post',
       'oneToMany',
       'api::comment.comment'
     >;
-    Media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
