@@ -1025,7 +1025,13 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'api::member.member'
     >;
     Role: Attribute.Enumeration<
-      ['Te President', 'Deputy President', 'attorney Qeneral', 'CS', 'PS']
+      [
+        'The President',
+        'Deputy President',
+        'Attorney General',
+        'Cabinet Secretary',
+        'Permanent Secretary'
+      ]
     >;
     Name: Attribute.String;
     legal_assistance_requests: Attribute.Relation<
@@ -1244,6 +1250,7 @@ export interface ApiMinisterMinister extends Schema.CollectionType {
     singularName: 'minister';
     pluralName: 'ministers';
     displayName: 'Minister';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1254,6 +1261,11 @@ export interface ApiMinisterMinister extends Schema.CollectionType {
       'api::minister.minister',
       'oneToOne',
       'api::ministry.ministry'
+    >;
+    Contact: Attribute.Component<'contact.contact-info', true>;
+    Minister: Attribute.Component<
+      'representative-info.representative-info',
+      true
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

@@ -8,7 +8,7 @@ export interface RepresentativeInfoRepresentativeInfo extends Schema.Component {
     description: '';
   };
   attributes: {
-    Role: Attribute.Enumeration<['Senator', 'Mp', 'MCA']>;
+    Role: Attribute.Enumeration<['Senator', 'Mp', 'MCA', 'Minister']>;
     Party: Attribute.String;
     Photo: Attribute.Media<'images' | 'videos'>;
   };

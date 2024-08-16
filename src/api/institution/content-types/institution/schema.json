@@ -21,11 +21,11 @@
     "Role": {
       "type": "enumeration",
       "enum": [
-        "Te President",
+        "The President",
         "Deputy President",
-        "attorney Qeneral",
-        "CS",
-        "PS"
+        "Attorney General",
+        "Cabinet Secretary",
+        "Permanent Secretary"
       ]
     },
     "Name": {

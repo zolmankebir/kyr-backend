@@ -12,7 +12,8 @@
       "enum": [
         "Senator",
         "Mp",
-        "MCA"
+        "MCA",
+        "Minister"
       ]
     },
     "Party": {
