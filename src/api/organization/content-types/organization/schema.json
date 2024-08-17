@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
-      "type": "string"
-    },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",
@@ -38,6 +35,47 @@
       "relation": "manyToMany",
       "target": "api::legal-assistance-request.legal-assistance-request",
       "mappedBy": "organizations"
+    },
+    "Organisations": {
+      "type": "enumeration",
+      "enum": [
+        "GT Bank",
+        "Rubis",
+        "Naivas",
+        "Britam",
+        "Quick Mart",
+        "Safaricom",
+        "Equity",
+        "Bamburi Cement"
+      ]
+    },
+    "counties": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::county.county",
+      "inversedBy": "organizations"
+    },
+    "Sector": {
+      "type": "enumeration",
+      "enum": [
+        "Finance",
+        "Trade",
+        "Construction",
+        "Transport",
+        "Energy",
+        "Hospitality"
+      ]
+    },
+    "Industry": {
+      "type": "enumeration",
+      "enum": [
+        "Supply Chain",
+        "Banking ",
+        "Petroleum",
+        "Hotel",
+        "Insurance",
+        "Communication"
+      ]
     }
   }
 }

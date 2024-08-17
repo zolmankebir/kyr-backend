@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Ministry": {
-      "type": "string",
-      "unique": true
-    },
     "institution": {
       "type": "relation",
       "relation": "manyToOne",
@@ -26,6 +22,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::minister.minister"
+    },
+    "Ministry": {
+      "type": "string"
     }
   }
 }
