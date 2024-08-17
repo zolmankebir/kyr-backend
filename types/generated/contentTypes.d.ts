@@ -1073,6 +1073,46 @@ export interface ApiCourtCourt extends Schema.CollectionType {
   };
 }
 
+export interface ApiDirectorOfParastatalDirectorOfParastatal
+  extends Schema.CollectionType {
+  collectionName: 'director_of_parastatals';
+  info: {
+    singularName: 'director-of-parastatal';
+    pluralName: 'director-of-parastatals';
+    displayName: 'Director of Parastatal';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Director_of_Parastatal: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique;
+    member: Attribute.Relation<
+      'api::director-of-parastatal.director-of-parastatal',
+      'oneToOne',
+      'api::member.member'
+    >;
+    info: Attribute.Component<'contact.contact-info'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::director-of-parastatal.director-of-parastatal',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::director-of-parastatal.director-of-parastatal',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiIndustryIndustry extends Schema.CollectionType {
   collectionName: 'industries';
   info: {
@@ -1138,7 +1178,7 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
         'Permanent Secretary'
       ]
     >;
-    Name: Attribute.String;
+    Institution: Attribute.String;
     legal_assistance_requests: Attribute.Relation<
       'api::institution.institution',
       'manyToMany',
@@ -1154,6 +1194,7 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
       'manyToOne',
       'api::institution-type.institution-type'
     >;
+    Incharge: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1332,6 +1373,11 @@ export interface ApiMemberMember extends Schema.CollectionType {
     Email: Attribute.Email & Attribute.Required & Attribute.Unique;
     Phone_Number: Attribute.BigInteger & Attribute.Required;
     Profile: Attribute.Media<'images'>;
+    director_of_parastatal: Attribute.Relation<
+      'api::member.member',
+      'oneToOne',
+      'api::director-of-parastatal.director-of-parastatal'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1624,6 +1670,38 @@ export interface ApiReviewReview extends Schema.CollectionType {
   };
 }
 
+export interface ApiSectorSector extends Schema.CollectionType {
+  collectionName: 'sectors';
+  info: {
+    singularName: 'sector';
+    pluralName: 'sectors';
+    displayName: 'Sector';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Sector: Attribute.Enumeration<
+      ['Finance', 'Trade', 'Construction', 'Transport', 'Energy', 'Hospitality']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sector.sector',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sector.sector',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSenatorSenator extends Schema.CollectionType {
   collectionName: 'senators';
   info: {
@@ -1753,6 +1831,7 @@ declare module '@strapi/types' {
       'api::constituency.constituency': ApiConstituencyConstituency;
       'api::county.county': ApiCountyCounty;
       'api::court.court': ApiCourtCourt;
+      'api::director-of-parastatal.director-of-parastatal': ApiDirectorOfParastatalDirectorOfParastatal;
       'api::industry.industry': ApiIndustryIndustry;
       'api::institution.institution': ApiInstitutionInstitution;
       'api::institution-type.institution-type': ApiInstitutionTypeInstitutionType;
@@ -1766,6 +1845,7 @@ declare module '@strapi/types' {
       'api::organization.organization': ApiOrganizationOrganization;
       'api::organization-type.organization-type': ApiOrganizationTypeOrganizationType;
       'api::review.review': ApiReviewReview;
+      'api::sector.sector': ApiSectorSector;
       'api::senator.senator': ApiSenatorSenator;
       'api::timeline-post.timeline-post': ApiTimelinePostTimelinePost;
       'api::ward.ward': ApiWardWard;
