@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courts",
+  "info": {
+    "singularName": "court",
+    "pluralName": "courts",
+    "displayName": "Court"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Courts": {
+      "type": "enumeration",
+      "enum": [
+        "Superior court",
+        "High Court",
+        "Subordinate Court"
+      ]
+    },
+    "Superior_Court": {
+      "type": "enumeration",
+      "enum": [
+        "Supreme Court",
+        "Court of Appeal"
+      ]
+    },
+    "High_Courts": {
+      "type": "enumeration",
+      "enum": [
+        "Employment and Labour Relations Court",
+        "Environment and Land Court"
+      ]
+    },
+    "Subordinate_Courts": {
+      "type": "enumeration",
+      "enum": [
+        "Magistrate Courts",
+        "Tribunals",
+        "Khadhis Court",
+        "Court Martials",
+        "Small Claims Courts"
+      ]
+    }
+  }
+}

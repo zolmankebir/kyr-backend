@@ -74,6 +74,12 @@
       "relation": "oneToMany",
       "target": "api::constituency.constituency",
       "mappedBy": "county"
+    },
+    "organizations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::organization.organization",
+      "mappedBy": "counties"
     }
   }
 }

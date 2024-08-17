@@ -1005,6 +1005,11 @@ export interface ApiCountyCounty extends Schema.CollectionType {
       'oneToMany',
       'api::constituency.constituency'
     >;
+    organizations: Attribute.Relation<
+      'api::county.county',
+      'manyToMany',
+      'api::organization.organization'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1016,6 +1021,90 @@ export interface ApiCountyCounty extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::county.county',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCourtCourt extends Schema.CollectionType {
+  collectionName: 'courts';
+  info: {
+    singularName: 'court';
+    pluralName: 'courts';
+    displayName: 'Court';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Courts: Attribute.Enumeration<
+      ['Superior court', 'High Court', 'Subordinate Court']
+    >;
+    Superior_Court: Attribute.Enumeration<['Supreme Court', 'Court of Appeal']>;
+    High_Courts: Attribute.Enumeration<
+      ['Employment and Labour Relations Court', 'Environment and Land Court']
+    >;
+    Subordinate_Courts: Attribute.Enumeration<
+      [
+        'Magistrate Courts',
+        'Tribunals',
+        'Khadhis Court',
+        'Court Martials',
+        'Small Claims Courts'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::court.court',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::court.court',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiIndustryIndustry extends Schema.CollectionType {
+  collectionName: 'industries';
+  info: {
+    singularName: 'industry';
+    pluralName: 'industries';
+    displayName: 'Industry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Industry: Attribute.Enumeration<
+      [
+        'Supply Chain',
+        'Banking',
+        'Petroleum',
+        'Hotel ',
+        'Insurance',
+        'Communication'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::industry.industry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::industry.industry',
       'oneToOne',
       'admin::user'
     > &
@@ -1314,7 +1403,6 @@ export interface ApiMinistryMinistry extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Ministry: Attribute.String & Attribute.Unique;
     institution: Attribute.Relation<
       'api::ministry.ministry',
       'manyToOne',
@@ -1325,6 +1413,7 @@ export interface ApiMinistryMinistry extends Schema.CollectionType {
       'oneToMany',
       'api::minister.minister'
     >;
+    Ministry: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1385,7 +1474,6 @@ export interface ApiOrganizationOrganization extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String;
     reviews: Attribute.Relation<
       'api::organization.organization',
       'oneToMany',
@@ -1405,6 +1493,36 @@ export interface ApiOrganizationOrganization extends Schema.CollectionType {
       'api::organization.organization',
       'manyToMany',
       'api::legal-assistance-request.legal-assistance-request'
+    >;
+    Organisations: Attribute.Enumeration<
+      [
+        'GT Bank',
+        'Rubis',
+        'Naivas',
+        'Britam',
+        'Quick Mart',
+        'Safaricom',
+        'Equity',
+        'Bamburi Cement'
+      ]
+    >;
+    counties: Attribute.Relation<
+      'api::organization.organization',
+      'manyToMany',
+      'api::county.county'
+    >;
+    Sector: Attribute.Enumeration<
+      ['Finance', 'Trade', 'Construction', 'Transport', 'Energy', 'Hospitality']
+    >;
+    Industry: Attribute.Enumeration<
+      [
+        'Supply Chain',
+        'Banking ',
+        'Petroleum',
+        'Hotel',
+        'Insurance',
+        'Communication'
+      ]
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1634,6 +1752,8 @@ declare module '@strapi/types' {
       'api::comment.comment': ApiCommentComment;
       'api::constituency.constituency': ApiConstituencyConstituency;
       'api::county.county': ApiCountyCounty;
+      'api::court.court': ApiCourtCourt;
+      'api::industry.industry': ApiIndustryIndustry;
       'api::institution.institution': ApiInstitutionInstitution;
       'api::institution-type.institution-type': ApiInstitutionTypeInstitutionType;
       'api::legal-assistance-request.legal-assistance-request': ApiLegalAssistanceRequestLegalAssistanceRequest;
