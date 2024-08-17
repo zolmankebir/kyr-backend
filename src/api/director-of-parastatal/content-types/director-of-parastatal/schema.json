@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "director_of_parastatals",
+  "info": {
+    "singularName": "director-of-parastatal",
+    "pluralName": "director-of-parastatals",
+    "displayName": "Director of Parastatal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Director_of_Parastatal": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "member": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::member.member",
+      "inversedBy": "director_of_parastatal"
+    },
+    "info": {
+      "type": "component",
+      "repeatable": false,
+      "component": "contact.contact-info"
+    }
+  }
+}

@@ -43,6 +43,12 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "director_of_parastatal": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::director-of-parastatal.director-of-parastatal",
+      "mappedBy": "member"
     }
   }
 }

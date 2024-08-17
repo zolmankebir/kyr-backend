@@ -28,7 +28,7 @@
         "Permanent Secretary"
       ]
     },
-    "Name": {
+    "Institution": {
       "type": "string"
     },
     "legal_assistance_requests": {
@@ -48,6 +48,10 @@
       "relation": "manyToOne",
       "target": "api::institution-type.institution-type",
       "inversedBy": "institutions"
+    },
+    "Incharge": {
+      "type": "string",
+      "unique": true
     }
   }
 }

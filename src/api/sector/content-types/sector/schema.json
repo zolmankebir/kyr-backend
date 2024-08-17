@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sectors",
+  "info": {
+    "singularName": "sector",
+    "pluralName": "sectors",
+    "displayName": "Sector"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sector": {
+      "type": "enumeration",
+      "enum": [
+        "Finance",
+        "Trade",
+        "Construction",
+        "Transport",
+        "Energy",
+        "Hospitality"
+      ]
+    }
+  }
+}
